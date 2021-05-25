@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Estadisticas</title>
+    <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUyrqDHWHifneN3m_TTYjO3zgL-2cU0rK7w&usqp=CAU">
+<style>
+html {
+    min-height: 100%;
+}
+ 
+body {
+    background: -webkit-linear-gradient(left, #93B874, #C9DCB9); 
+    background: -o-linear-gradient(right, #93B874, #C9DCB9);
+    background: -moz-linear-gradient(right, #93B874, #C9DCB9); 
+    background: linear-gradient(to right, #93B874, #C9DCB9); 
+    background-color: #93B874; 
+}
+
+</style>
+</head>
+<body>
+    <h1 class="text-center text-uppercase">Estadisticas Deportivas</h1>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <h3>Conseguir la informacion</h3>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary" id="enviar" width="5" height="5">Traer Datos</button>
+        </div>
+        <div class="row">
+            <table class="table" id="sports">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" ></script>
+
+    <script>
+        $("#enviar").click(function(){
+            $.get("https://www.thesportsdb.com/api/v1/json/1/all_sports.php",
+            function(data){
+                $.each(data.sports, function(i, item){
+                    $("#sports").append("<tr><td>" +item.idsports + "</td>>/tr>")
+                });
+            });
+        });
+    </script>
+</body>
+</html>
